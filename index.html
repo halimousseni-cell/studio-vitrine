@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Halim — Visuels professionnels par IA pour commerces</title>
+<meta name="description" content="Visuels publicitaires et contenus réseaux sociaux professionnels créés par IA pour restaurants, boutiques et marques. Livraison en 48h, à partir de 150 €.">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #6b6b6b;
+    --cream: #faf7f2;
+    --accent: #c8a24b;
+    --accent-dark: #a9852f;
+    --white: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.6;
+  }
+  h1, h2, h3 { font-weight: 600; line-height: 1.2; }
+  img { max-width: 100%; display: block; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 6vw;
+    background: rgba(250,247,242,.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid #eee5d5;
+  }
+  .logo { font-size: 1.15rem; font-weight: 700; letter-spacing: .06em; }
+  .logo span { color: var(--accent); }
+  nav ul { display: flex; gap: 2rem; list-style: none; }
+  nav a { text-decoration: none; color: var(--ink); font-size: .95rem; }
+  nav a:hover { color: var(--accent-dark); }
+  .nav-cta {
+    background: var(--ink); color: var(--white) !important;
+    padding: .55rem 1.2rem; border-radius: 999px; font-weight: 600;
+  }
+  .nav-cta:hover { background: var(--accent-dark); }
+
+  /* HERO */
+  header.hero {
+    text-align: center;
+    padding: 6rem 6vw 4.5rem;
+    max-width: 900px; margin: 0 auto;
+  }
+  .hero .kicker {
+    display: inline-block; font-size: .8rem; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--accent-dark);
+    margin-bottom: 1.2rem; font-weight: 700;
+  }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3.3rem); margin-bottom: 1.2rem; }
+  .hero p.lead { font-size: 1.15rem; color: var(--muted); max-width: 620px; margin: 0 auto 2.2rem; }
+  .btn {
+    display: inline-block; text-decoration: none; font-weight: 600;
+    padding: .9rem 2rem; border-radius: 999px; font-size: 1rem;
+    transition: transform .15s ease, background .15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: var(--ink); color: var(--white); }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-ghost { border: 1.5px solid var(--ink); color: var(--ink); margin-left: .8rem; }
+  .hero .note { margin-top: 1.2rem; font-size: .85rem; color: var(--muted); }
+
+  /* SECTIONS */
+  section { padding: 4.5rem 6vw; }
+  .section-head { text-align: center; max-width: 640px; margin: 0 auto 3rem; }
+  .section-head h2 { font-size: clamp(1.6rem, 3.5vw, 2.3rem); margin-bottom: .8rem; }
+  .section-head p { color: var(--muted); }
+
+  /* PORTFOLIO */
+  .case { max-width: 1150px; margin: 0 auto 4rem; }
+  .case:last-child { margin-bottom: 0; }
+  .case-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.4rem; flex-wrap: wrap; }
+  .case-head h3 { font-size: 1.5rem; }
+  .case-head .tag {
+    font-size: .75rem; letter-spacing: .12em; text-transform: uppercase;
+    background: #f0e8d8; color: var(--accent-dark);
+    padding: .3rem .9rem; border-radius: 999px; font-weight: 700;
+  }
+  .case-head p { width: 100%; color: var(--muted); max-width: 720px; }
+  .gallery {
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+  }
+  .gallery figure { border-radius: 14px; overflow: hidden; position: relative; }
+  .gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+  .gallery figure:hover img { transform: scale(1.045); }
+  .gallery .tall { grid-row: span 2; }
+
+  /* PRICING */
+  #formules { background: var(--white); }
+  .plans {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem; max-width: 1050px; margin: 0 auto;
+  }
+  .plan {
+    border: 1px solid #ece4d4; border-radius: 18px;
+    padding: 2.2rem 1.8rem; background: var(--cream);
+    display: flex; flex-direction: column;
+  }
+  .plan.featured {
+    background: var(--ink); color: var(--white);
+    transform: scale(1.04); border: none;
+    box-shadow: 0 18px 45px rgba(26,26,26,.22);
+  }
+  .plan .badge {
+    align-self: flex-start; font-size: .7rem; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+    background: var(--accent); color: var(--ink);
+    padding: .25rem .8rem; border-radius: 999px; margin-bottom: 1rem;
+  }
+  .plan h3 { font-size: 1.2rem; margin-bottom: .4rem; }
+  .plan .price { font-size: 2.2rem; font-weight: 700; margin: .6rem 0; }
+  .plan .price small { font-size: .95rem; font-weight: 400; color: inherit; opacity: .7; }
+  .plan ul { list-style: none; margin: 1.2rem 0 1.8rem; flex: 1; }
+  .plan li { padding: .38rem 0 .38rem 1.6rem; position: relative; font-size: .95rem; }
+  .plan li::before { content: "✓"; position: absolute; left: 0; color: var(--accent-dark); font-weight: 700; }
+  .plan.featured li::before { color: var(--accent); }
+  .plan .btn { text-align: center; }
+  .plan.featured .btn { background: var(--accent); color: var(--ink); }
+  .plan.featured .btn:hover { background: var(--white); }
+
+  /* PROCESS */
+  .steps {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2rem; max-width: 950px; margin: 0 auto;
+  }
+  .step { text-align: center; }
+  .step .num {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--ink); color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 1.2rem; margin: 0 auto 1rem;
+  }
+  .step h3 { font-size: 1.05rem; margin-bottom: .4rem; }
+  .step p { font-size: .92rem; color: var(--muted); }
+
+  /* CONTACT */
+  #contact { background: var(--ink); color: var(--white); text-align: center; }
+  #contact h2 { font-size: clamp(1.6rem, 3.5vw, 2.3rem); margin-bottom: 1rem; }
+  #contact p { color: #cfc9bd; max-width: 560px; margin: 0 auto 2rem; }
+  #contact .btn-primary { background: var(--accent); color: var(--ink); }
+  #contact .btn-primary:hover { background: var(--white); }
+
+  footer {
+    text-align: center; padding: 1.6rem; font-size: .82rem;
+    color: var(--muted); background: var(--ink); border-top: 1px solid #2c2c2c;
+  }
+
+  @media (max-width: 900px) {
+    .plans { grid-template-columns: 1fr; max-width: 420px; }
+    .plan.featured { transform: none; }
+    .steps { grid-template-columns: 1fr; max-width: 420px; }
+    .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 170px; }
+    nav ul { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">STUDIO<span>HALIM</span></div>
+  <ul>
+    <li><a href="#portfolio">Réalisations</a></li>
+    <li><a href="#formules">Formules</a></li>
+    <li><a href="#process">Comment ça marche</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">Demander un visuel gratuit</a>
+</nav>
+
+<header class="hero">
+  <span class="kicker">Création visuelle par IA</span>
+  <h1>Des visuels dignes d'une agence,<br>sans le budget d'une agence.</h1>
+  <p class="lead">Photos produits, publications réseaux sociaux, visuels publicitaires : je crée l'image de marque de votre commerce en 48&nbsp;h, à partir de 150&nbsp;€.</p>
+  <a class="btn btn-primary" href="#contact">Recevoir un visuel gratuit pour mon commerce</a>
+  <a class="btn btn-ghost" href="#portfolio">Voir les réalisations</a>
+  <p class="note">Sans engagement — je vous envoie une maquette personnalisée avant tout paiement.</p>
+</header>
+
+<section id="portfolio">
+  <div class="section-head">
+    <h2>Réalisations</h2>
+    <p>Trois univers, trois identités visuelles complètes. Chaque projet comprend visuels de feed, formats story et créations promotionnelles.</p>
+  </div>
+
+  <div class="case">
+    <div class="case-head">
+      <h3>Lueur</h3><span class="tag">Cosmétique</span>
+      <p>Identité clean beauty : palette rose poudré et crème, lumière douce, typographie fine. Visuel produit, macro texture, création promotionnelle et formats story.</p>
+    </div>
+    <div class="gallery">
+      <figure class="tall"><img src="assets/lueur-5.webp" alt="Story Instagram Lueur — flacon en lumière matinale" loading="lazy"></figure>
+      <figure><img src="assets/lueur-1.webp" alt="Visuel produit Lueur — sérum sur piédestal de pierre" loading="lazy"></figure>
+      <figure><img src="assets/lueur-2.webp" alt="Macro texture de sérum Lueur" loading="lazy"></figure>
+      <figure><img src="assets/lueur-3.webp" alt="Visuel promotionnel Lueur — offre de lancement -20%" loading="lazy"></figure>
+      <figure><img src="assets/lueur-4.webp" alt="Flat lay routine beauté Lueur" loading="lazy"></figure>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="case-head">
+      <h3>Casa Bella</h3><span class="tag">Restaurant</span>
+      <p>Ambiance trattoria : lumière dorée, tons chauds, authenticité. Plats signatures, intérieur, visuel menu du midi et portrait du chef.</p>
+    </div>
+    <div class="gallery">
+      <figure class="tall"><img src="assets/casa-5.webp" alt="Portrait du chef Casa Bella préparant des pâtes fraîches" loading="lazy"></figure>
+      <figure><img src="assets/casa-1.webp" alt="Tagliatelles maison Casa Bella en lumière dorée" loading="lazy"></figure>
+      <figure><img src="assets/casa-2.webp" alt="Tiramisu signature Casa Bella" loading="lazy"></figure>
+      <figure><img src="assets/casa-3.webp" alt="Intérieur chaleureux de la trattoria Casa Bella" loading="lazy"></figure>
+      <figure><img src="assets/casa-4.webp" alt="Visuel Menu du Midi Casa Bella — entrée + plat 18€" loading="lazy"></figure>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="case-head">
+      <h3>Atelier Nord</h3><span class="tag">Boutique de mode</span>
+      <p>Esthétique scandinave épurée : tons neutres, grain photographique, élégance discrète. Éditorial de rue, détail matière, nouvelle collection et devanture.</p>
+    </div>
+    <div class="gallery">
+      <figure class="tall"><img src="assets/nord-5.webp" alt="Story Instagram Atelier Nord — intérieur de boutique" loading="lazy"></figure>
+      <figure><img src="assets/nord-1.webp" alt="Éditorial mode Atelier Nord — manteau beige oversize" loading="lazy"></figure>
+      <figure><img src="assets/nord-2.webp" alt="Détail matière laine Atelier Nord" loading="lazy"></figure>
+      <figure><img src="assets/nord-3.webp" alt="Visuel Nouvelle Collection Automne-Hiver Atelier Nord" loading="lazy"></figure>
+      <figure><img src="assets/nord-4.webp" alt="Devanture de la boutique Atelier Nord au crépuscule" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<section id="formules">
+  <div class="section-head">
+    <h2>Formules</h2>
+    <p>Des tarifs clairs, sans surprise. Chaque visuel est livré prêt à publier, aux bons formats pour Instagram, Facebook et votre site.</p>
+  </div>
+  <div class="plans">
+    <div class="plan">
+      <h3>Pack Découverte</h3>
+      <div class="price">150&nbsp;€ <small>/ pack</small></div>
+      <ul>
+        <li>10 visuels personnalisés à votre marque</li>
+        <li>Formats feed + story inclus</li>
+        <li>2 séries de retouches</li>
+        <li>Livraison sous 48&nbsp;h</li>
+      </ul>
+      <a class="btn btn-primary" href="#contact">Commander</a>
+    </div>
+    <div class="plan featured">
+      <span class="badge">Le plus choisi</span>
+      <h3>Abonnement Mensuel</h3>
+      <div class="price">350&nbsp;€ <small>/ mois</small></div>
+      <ul>
+        <li>20 visuels par mois, prêts à publier</li>
+        <li>4 variantes de couverture / bannières</li>
+        <li>Calendrier de publication conseillé</li>
+        <li>Retouches illimitées</li>
+        <li>Sans engagement, résiliable chaque mois</li>
+      </ul>
+      <a class="btn" href="#contact">Commander</a>
+    </div>
+    <div class="plan">
+      <h3>Pack Premium</h3>
+      <div class="price">800&nbsp;€ <small>/ projet</small></div>
+      <ul>
+        <li>Identité visuelle complète</li>
+        <li>30 visuels multi-formats</li>
+        <li>Vidéos courtes pour réseaux sociaux</li>
+        <li>Accompagnement stratégique 1&nbsp;mois</li>
+      </ul>
+      <a class="btn btn-primary" href="#contact">Commander</a>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="section-head">
+    <h2>Comment ça marche</h2>
+    <p>Trois étapes, zéro friction. Vous restez concentré sur votre commerce, je m'occupe de votre image.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="num">1</div>
+      <h3>On échange 15 minutes</h3>
+      <p>Vous me parlez de votre commerce, vos couleurs, vos envies. Par téléphone ou message.</p>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <h3>Je crée une maquette gratuite</h3>
+      <p>Vous recevez un premier visuel personnalisé sous 24&nbsp;h. Vous ne payez que si ça vous plaît.</p>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <h3>Livraison en 48&nbsp;h</h3>
+      <p>Vos visuels prêts à publier, aux bons formats, avec les retouches incluses.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Un visuel gratuit pour votre commerce</h2>
+  <p>Envoyez-moi le nom de votre commerce et un lien vers votre page ou site : je vous renvoie une maquette personnalisée sous 24&nbsp;h, sans engagement.</p>
+  <a class="btn btn-primary" href="mailto:halimousseni@gmail.com?subject=Demande%20de%20visuel%20gratuit&body=Bonjour%2C%0A%0ANom%20du%20commerce%20%3A%20%0ASecteur%20%3A%20%0ALien%20(site%20ou%20r%C3%A9seaux)%20%3A%20%0A%0AMerci%20!">Demander mon visuel gratuit</a>
+</section>
+
+<footer>
+  © 2026 Studio Halim — Visuels professionnels par IA pour commerces et marques.
+</footer>
+
+</body>
+</html>
